@@ -42,13 +42,34 @@
     var escaped = CANONICAL_ORIGIN.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     var re = new RegExp(escaped, "g");
 
+    // GitHub Pages proje sitesi tespiti: repo adı URL'e prefix olarak girer.
+    // Örnek: canonical = https://rivadent.com.tr/en/   actual = /site/en/
+    // → basePath = "/site"
+    var basePath = "";
+    var canonEl = document.querySelector('link[rel="canonical"]');
+    if (canonEl) {
+      var canonPath = canonEl.getAttribute("href").replace(CANONICAL_ORIGIN, ""); // "/en/"
+      var actualPath = window.location.pathname;                                  // "/site/en/"
+      if (canonPath &&
+          actualPath.endsWith(canonPath) &&
+          actualPath.length > canonPath.length) {
+        basePath = actualPath.slice(0, actualPath.length - canonPath.length);     // "/site"
+        if (basePath.endsWith("/")) basePath = basePath.slice(0, -1);
+      }
+    }
+
     function swap(url) {
-      return url ? url.replace(re, live) : url;
+      if (!url) return url;
+      url = url.replace(re, live);                          // origin değiştir
+      if (basePath) {
+        // https://live/foo/ → https://live/site/foo/
+        url = url.replace(live + "/", live + basePath + "/");
+      }
+      return url;
     }
 
     // <link rel="canonical">
-    var canon = document.querySelector('link[rel="canonical"]');
-    if (canon) canon.setAttribute("href", swap(canon.getAttribute("href")));
+    if (canonEl) canonEl.setAttribute("href", swap(canonEl.getAttribute("href")));
 
     // <link rel="alternate" hreflang="*">
     var alts = document.querySelectorAll('link[rel="alternate"]');
@@ -69,9 +90,12 @@
     if (twImg) twImg.setAttribute("content", swap(twImg.getAttribute("content")));
 
     // JSON-LD blokları
+    var reStr = escaped + "/";
+    var reWithPath = new RegExp(reStr, "g");
+    var replacement = live + basePath + "/";
     var jsonlds = document.querySelectorAll('script[type="application/ld+json"]');
     for (var j = 0; j < jsonlds.length; j++) {
-      jsonlds[j].textContent = jsonlds[j].textContent.replace(re, live);
+      jsonlds[j].textContent = jsonlds[j].textContent.replace(reWithPath, replacement);
     }
   }
 
