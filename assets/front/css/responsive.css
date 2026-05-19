@@ -1,0 +1,289 @@
+@charset "utf-8";
+
+@media only screen and (max-width: 1399px) {
+    .menu ul li:not(:last-child) {
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .main-header-right .light-btn {
+        display: none;
+    }
+    .logo img {
+        width: 170px;
+    }
+    .menu ul li:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .home-banner-content .title-area .title {
+        font-size: 55px;
+    }
+
+    .home-banner-content .title-area .title span {
+        font-size: 55px;
+    }
+
+    .home-banner-content p {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .team-img img {
+        filter: none;
+    }
+    .footer-element {
+        padding-top: 0;
+    }
+
+    .about-page-info img {
+        height: 200px;
+    }
+
+    .footer-logo {
+        padding: 20px;
+    }
+
+    .footer-link-area {
+        margin-bottom: 0;
+    }
+
+    .footer-link-area .footer-title {
+        margin-bottom: 0;
+    }
+
+    .title-area .sub-title {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .title-area .title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .title-area .title span {
+        font-size: 32px;
+    }
+
+
+    .main-header-center {
+        display: none;
+    }
+
+    .mobile-menu-btn-area {
+        display: block;
+    }
+
+    .header-content {
+        padding: 10px 0;
+    }
+
+    .logo img {
+        width: 160px;
+    }
+
+    .languages {
+        display: none;
+    }
+
+    .header-top {
+        background-color: #F9FAFB;
+        padding: 10px 0;
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .comment-element .slider-button-area,
+    .treatment-element .slider-button-area {
+        justify-content: start;
+    }
+
+    .team-detail-element {
+        margin-top: 0;
+    }
+
+    .clinic-title .title {
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .clinic-title {
+        width: 100%;
+    }
+
+    .item-top-area {
+        margin-bottom: 20px;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+
+    .home-banner-content-mobile-item {
+        display: block;
+    }
+    .footer-element {
+        margin-bottom: 105px;
+    }
+
+    .home-banner-content .title-area .title {
+        font-size: 38px;
+        line-height: 45px;
+    }
+
+    .home-banner-content .title-area .title span {
+        font-size: 37px;
+        line-height: 45px;
+    }
+
+    .home-banner-content p {
+        display: none;
+    }
+
+    .home-banner-content .clinic-select {
+        display: none;
+    }
+
+    .home-banner-content .home-banner-btn-area {
+        display: none;
+    }
+
+    .home-banner-img-area {
+        display: none;
+    }
+
+    .home-banner-content-mobile-item .clinic-select {
+        display: block;
+    }
+
+    .item-top-right-area {
+        /* flex: .3; */
+    }
+
+    .title-area {
+    }
+
+    .slider-pagination-area {
+        display: block;
+        margin-left: auto;
+        margin-top: 10px;
+    }
+
+    .item-top-area .item-top-right-area .see-all {
+        /* display: none; */
+    }
+
+    .live-support-item {
+        bottom: 130px;
+    }
+
+    .footer-mobile-contact {
+        display: block;
+    }
+
+    .team-info .title {
+        font-size: 18px;
+    }
+
+    .team-info p {
+        font-size: 12px;
+    }
+
+    .title-area .title span {
+        font-size: 28px;
+    }
+
+    .title-area .title {
+        font-size: 30px;
+    }
+
+    .title-area .sub-title {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    .site-btn {
+        padding: 4px 9px;
+    }
+
+    .live-support-item .live-support-btn {
+        padding: 10px 10px 10px 10px;
+    }
+
+    .whatsapp-chat-box {
+        left: 10px;
+    }
+
+    .live-support-chat-area {
+        height: 100%;
+    }
+
+    .instagram-element {
+        margin-bottom: 40px;
+    }
+
+    .comment-element {
+        margin-bottom: 40px;
+    }
+
+    .blog-element {
+        margin: 40px 0;
+    }
+
+    .about-element {
+        margin: 40px 0;
+    }
+
+    .slider-button-area {
+        justify-content: start;
+        display: none;
+    }
+
+    .team-element {
+        margin-top: 50px;
+    }
+
+    .referances-element {
+        padding: 40px 0;
+    }
+
+    .meeting-element {
+        margin: 40px 0;
+    }
+
+    .contact-element {
+        margin: 40px 0;
+    }
+
+    .contact-form-area {
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .policlinic-detail-element {
+        padding: 10px 0;
+    }
+
+    .treatment-element {
+        margin-top: 50px;
+    }
+
+    .treatment-content-text h2 {
+        font-size: 24px;
+    }
+
+    .treatment-content-text p {
+        font-size: 16px;
+    }
+
+    .accordion-text p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 360px) {}

@@ -1,0 +1,7 @@
+# -------------------------------------------------------
+# STAGING MODE — rivadent.com.tr hâlâ aktif
+# Bu site şu an index edilmemeli (duplicate content riski).
+# rivadent.com.tr kapatıldığında robots-live.txt ile değiştir.
+# -------------------------------------------------------
+User-agent: *
+Disallow: /

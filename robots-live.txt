@@ -1,0 +1,9 @@
+# -------------------------------------------------------
+# LIVE MODE — rivadent.com.tr kapatıldıktan sonra kullan
+# Bu dosyayı robots.txt olarak yeniden adlandır.
+# -------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /assets/back/
+
+Sitemap: SITE_URL/sitemap.xml
