@@ -549,6 +549,9 @@ ul {
 }
 
 .blog-img img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
     border-radius: 16px;
     border: 1px solid #F2F4F7;
 }
