@@ -6,4 +6,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/back/
 
-Sitemap: SITE_URL/sitemap.xml
+Sitemap: https://rivadent.com.tr/sitemap.xml
