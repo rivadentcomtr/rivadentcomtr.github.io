@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python tools/update_site.py)",
+      "Bash(python tools/create_aleyna_page.py)",
+      "Bash(python tools/restore_sultan_tas.py)",
+      "Bash(python \"c:\\\\Users\\\\omerc\\\\CascadeProjects\\\\whatsappBot\\\\rivadentLast\\\\site\\\\tools\\\\remove_sultan_before_aleyna.py\")",
+      "Bash(python tools/remove_sultan_before_aleyna.py)"
+    ]
+  }
+}
