@@ -1232,6 +1232,31 @@
 
 <!-- i18n:script -->
 <script src="../assets/i18n.js" defer></script>
+<script>
+$(function () {
+    // İstanbul -> Maltepe, diğer şehirler -> Atakum
+    var cityWa = { "40": "905413871738" };
+    var defaultWa = "905079442275";
+
+    $(document).off('submit', '#infoContact').on('submit', '#infoContact', function (e) {
+        e.preventDefault();
+        var name    = $('input[name="name_surname"]').val().trim();
+        var email   = $('input[name="email"]').val().trim();
+        var cityVal = $('select[name="city_id"]').val();
+        var cityTxt = $('select[name="city_id"] option:selected').text().trim();
+        var phone   = $('input[name="phone"]').val().trim();
+        var msg     = $('textarea[name="message"]').val().trim();
+        var waNum   = cityWa[cityVal] || defaultWa;
+        var text = 'Merhaba RivaDent,\n\nİletişim formu mesajı:\n\n'
+            + 'Ad Soyad: ' + name + '\n'
+            + 'E-posta: ' + email + '\n'
+            + 'Telefon: ' + phone + '\n'
+            + (cityTxt ? 'Şehir: ' + cityTxt + '\n' : '')
+            + (msg ? 'Mesaj: ' + msg : '');
+        window.open('https://api.whatsapp.com/send/?phone=' + waNum + '&text=' + encodeURIComponent(text), '_blank');
+    });
+});
+</script>
 <!-- seo:jsonld:start -->
 <script type="application/ld+json">
 {

@@ -1231,6 +1231,31 @@
 
 <!-- i18n:script -->
 <script src="../../assets/i18n.js" defer></script>
+<script>
+$(function () {
+    // Istanbul -> Maltepe, other cities -> Atakum
+    var cityWa = { "40": "905413871738" };
+    var defaultWa = "905079442275";
+
+    $(document).off('submit', '#infoContact').on('submit', '#infoContact', function (e) {
+        e.preventDefault();
+        var name    = $('input[name="name_surname"]').val().trim();
+        var email   = $('input[name="email"]').val().trim();
+        var cityVal = $('select[name="city_id"]').val();
+        var cityTxt = $('select[name="city_id"] option:selected').text().trim();
+        var phone   = $('input[name="phone"]').val().trim();
+        var msg     = $('textarea[name="message"]').val().trim();
+        var waNum   = cityWa[cityVal] || defaultWa;
+        var text = 'Hello RivaDent,\n\nContact form message:\n\n'
+            + 'Name: ' + name + '\n'
+            + 'Email: ' + email + '\n'
+            + 'Phone: ' + phone + '\n'
+            + (cityTxt ? 'City: ' + cityTxt + '\n' : '')
+            + (msg ? 'Message: ' + msg : '');
+        window.open('https://api.whatsapp.com/send/?phone=' + waNum + '&text=' + encodeURIComponent(text), '_blank');
+    });
+});
+</script>
 <!-- seo:jsonld:start -->
 <script type="application/ld+json">
 {

@@ -1045,6 +1045,72 @@
 
 <!-- i18n:script -->
 <script src="../../assets/i18n.js" defer></script>
+<script>
+$(function () {
+    var clinicDoctors = {
+        "21": ["Prof. Dr. İbrahim Duran","Dr. Erman Canlı","Uzm. Dt. Mesut Köksal","Uzm. Dt. Çağla Gül Gürkan","Dr. Dt. Esra Duran","Uzm. Dr. Sevgin İbiş Tüfenk","Dt. Hüseyin Karacabey","Dt. Yusuf Akpınar"],
+        "22": ["Doç. Dr. Erhan Sarı","Dt. Mustafa Özdemir","Dt. Seray Tan","Uzm. Dr. Sevgin İbiş Tüfenk"],
+        "23": ["Dr. Dt. Sina Yıldırım","Dr. Dt. Miray Yıldırım","Dt. Başak Tımarcıoğlu","Dt. Aleyna Beray Kıdak","Dt. Muhammet Alptekin Özbek"]
+    };
+    var clinicNames = {
+        "21": "RivaDent Atakum",
+        "22": "RivaDent İlkadım",
+        "23": "RivaDent Maltepe"
+    };
+    var clinicWhatsApp = {
+        "21": "905079442275",
+        "22": "905522224285",
+        "23": "905413871738"
+    };
+
+    $('.policlinic_select').off('change').on('change', function () {
+        var id = $(this).val();
+        var def = '<option class="team_selected" disabled selected value="">Select Doctor</option>';
+        var html = def;
+        if (clinicDoctors[id]) {
+            $.each(clinicDoctors[id], function (i, name) {
+                html += '<option value="' + name + '">' + name + '</option>';
+            });
+        }
+        $('#team_select').html(html);
+    });
+
+    $(document).off('submit', '#infoMeeting').on('submit', '#infoMeeting', function (event) {
+        event.preventDefault();
+        if (!$('#cbx').is(':checked')) {
+            Swal.fire({
+                title: 'KVKK Consent Required',
+                text: 'Please read and approve the KVKK Disclosure Text.',
+                icon: 'warning',
+                showConfirmButton: true,
+                showCloseButton: true
+            });
+            return;
+        }
+        var name      = $('input[name="name_surname"]').val().trim();
+        var email     = $('input[name="email"]').val().trim();
+        var phone     = $('input[name="phone"]').val().trim();
+        var date      = $('input[name="meeting_date"]').val();
+        var polId     = $('select[name="policlinic"]').val();
+        var complaint = $('input[name="complaint"]').val().trim();
+        var doctor    = $('select[name="team"]').val() || '';
+        var waNumber  = clinicWhatsApp[polId];
+        if (!waNumber) {
+            Swal.fire({ title: 'Error', text: 'Please select a clinic.', icon: 'warning', showConfirmButton: true });
+            return;
+        }
+        var msg = 'Hello RivaDent,\n\nI would like to request an appointment:\n\n'
+            + 'Name: ' + name + '\n'
+            + 'Email: ' + email + '\n'
+            + 'Phone: ' + phone + '\n'
+            + 'Appointment Date: ' + date + '\n'
+            + 'Clinic: ' + clinicNames[polId] + '\n'
+            + (doctor ? 'Doctor: ' + doctor + '\n' : '')
+            + 'Complaint: ' + complaint;
+        window.open('https://api.whatsapp.com/send/?phone=' + waNumber + '&text=' + encodeURIComponent(msg), '_blank');
+    });
+});
+</script>
 <!-- seo:jsonld:start -->
 <script type="application/ld+json">
 {
