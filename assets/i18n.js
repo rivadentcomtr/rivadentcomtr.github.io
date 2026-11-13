@@ -105,12 +105,18 @@
   }
 
   function readAlternates() {
-    // <head>'deki <link rel="alternate" hreflang="..."> etiketlerini map'le.
-    // Eleventy / Python injector tarafından inject_i18n.py ile basılıyor.
+    // <head>'deki <link rel="alternate"> etiketlerini map'le.
+    // EN eşleşmeleri SEO-dışı `data-lang` attribute'unda taşınır
+    // (hreflang sadece tr/x-default için kaldı); eski sayfalarda
+    // hreflang attribute'u da fallback olarak okunur.
     var map = {};
-    var links = document.querySelectorAll('link[rel="alternate"][hreflang]');
+    var links = document.querySelectorAll('link[rel="alternate"]');
     for (var i = 0; i < links.length; i++) {
-      var lang = (links[i].getAttribute("hreflang") || "").toLowerCase();
+      var lang = (
+        links[i].getAttribute("data-lang") ||
+        links[i].getAttribute("hreflang") ||
+        ""
+      ).toLowerCase();
       var href = links[i].getAttribute("href");
       if (!lang || lang === "x-default" || !href) continue;
       map[lang] = href;
@@ -191,7 +197,9 @@
     var altMap = readAlternates();       // sonra güncel href'leri oku
     var lang = currentLocale();
     rewriteSwitcher(altMap, lang);
-    maybeAutoRedirect(altMap, lang);
+    // Otomatik dil yönlendirmesi kapalı: Googlebot en-US locale ile render
+    // ettiği için TR sayfaları /en/'e JS-redirect ediyordu (TR SEO'ya zarar).
+    // Dil değişimi yalnızca kullanıcı TR/EN butonuna tıkladığında olur.
   }
 
   if (document.readyState === "loading") {
